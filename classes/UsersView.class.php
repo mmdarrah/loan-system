@@ -1,4 +1,10 @@
 <?php
+/* MVC */
+/* Veiw */
+
+// A class to veiw the data that will get from the database with public functions
+//that is conected to protected function in the model file (Users.class.php)
+// the class is extends from the users class so we can call the protected function inside the model
 class UsersView extends Users
 {
 

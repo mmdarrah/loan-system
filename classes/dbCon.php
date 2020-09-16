@@ -1,5 +1,6 @@
 <?php
 /* extend PDO */
+// Connecting to Database class
 class DB extends PDO
 {
     public function __construct($dbname = "dblabb")

@@ -1,11 +1,11 @@
 <?php
+// including the auto loader function this way all new classes will be included automatically
 include 'includes/autoLoader.inc.php';
-/* include 'classes/Users.class.php';
-include 'classes/UsersView.class.php';
-include 'classes/UsersControl.class.php'; */
-
 ?>
+<!-- According to the MVC pattern, the Controller updates the Model and the View gets the data to be displayed from the Model. -->
 
+<!-- In the index file we are instantiate object from the UsersControl if we whant to wright
+data in the database or UsersVeiw if we whant to veiw data from the data base -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,29 +15,29 @@ include 'classes/UsersControl.class.php'; */
     <title>Document</title>
 </head>
 <body>
+
     <?php
 $getUsers = new UsersView();
 $getUsers->showUsers();
 ?>
 
     <h4>Add itemtype</h4>
-    <!--Formulär för kategorier -->
+    <!--Category Forms -->
     <form action="index.php" method="post">
         <input type="text" name="name" placeholder="name">
         <input type="submit" name="addType" value="Submit">
     </form>
     <?php
-// Lägg till itemtype
+// Add item type
 if (isset($_POST['addType'])) {
     $newType = $_POST['name'];
-    //echo $newType;
     $setType = new UsersControl();
     $setType->setNewType($newType);
 }
 ?>
 
     <h4>Add item</h4>
-    <!--Formulär för föremål -->
+    <!--item form -->
     <form action="index.php" method="post">
         <select name="type">
         <?php
@@ -55,16 +55,17 @@ if (isset($_POST['addItem'])) {
     </form>
         <?php
 
-// ta bort itemtypes
+// Delete item types
 if (isset($_GET['delType'])) {
     $id = $_GET['delType'];
     $delTyp = new UsersControl();
     $delTyp->delType($id);
 }
-
 ?>
+
+
         <?php
-// ta bort itemtypes
+// // Delete item
 if (isset($_GET['delItem'])) {
     $id = $_GET['delItem'];
     $delItem = new UsersControl();
@@ -73,19 +74,19 @@ if (isset($_GET['delItem'])) {
 ?>
 
         <h4>List categories</h4>
-            <?php
+        <?php
 $items = new UsersView();
 $items->showCategories();
 ?>
 
         <h4>List items</h4>
-            <?php
+        <?php
 $items = new UsersView();
 $items->showListOfItems();
 ?>
 
-<h4>Register loan</h4>
-    <form action="index.php" method="post">
+        <h4>Register loan</h4>
+        <form action="index.php" method="post">
         <label>Item: </label><select name="item">
 
         <?php
@@ -128,9 +129,9 @@ $loanList->showLoanList();
 
 
         <?php
-/* Vid återlämning av föremål
- * Sätter loan.active till 0 för att visa att det är ett inaktivt lån.
- * Detta för att arkivera alla lån.
+/* When returning items
+ * Sets loan.active to 0 to indicate that it is an inactive loan.
+ * This is to file all loans.
  */
 if (isset($_GET['returnItem'])) {
     $id = $_GET['returnItem'];
