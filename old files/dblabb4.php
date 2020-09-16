@@ -144,13 +144,15 @@ if (isset($_GET['returnItem'])) {
             // Fält för att visa länk för återlämning av föremål
             echo "<td>";
             if($row['active'] == '1') {
-                echo '<a href="dblabb4.php?returnItem=' . $row['lid'] . '">Return item</a>';    
+                echo '<a href="index.php?returnItem=' . $row['lid'] . '">Return item</a>';    
             } else {
                 echo "No active loan";
             }
             echo "</td></tr>";
         }
         echo "</table>";
+    } else {
+        echo "There are no loans in the database";
     }
 ?>
 </body>
